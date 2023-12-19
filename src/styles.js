@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
+
     width: 100%;
     height: 100vh;
-    background-color: #CACACA;
+    background: linear-gradient(296deg, #0E1621 42%, rgba(54, 78, 113, 0.00) 100%);
+    color: #F0F0F0;
+    font-family: 'Notable', sans-serif;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
 `
 
 

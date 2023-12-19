@@ -11,16 +11,19 @@ const App = () => {
   const [firstNumber, setFirstNumber] = useState('0');
   const [operation, setOperation] = useState('');
 
+// LIMPA VISOR
   const handleOnClear = () => {
     setCurrentNumber('0')
     setFirstNumber('0')
     setOperation('')
   };
 
+// MOSTRA NO VISOR
   const handleAddNumber = (num) => {
-    setCurrentNumber(prev => `${prev === '0' ? '' : prev}${num}`)
+    setCurrentNumber(prev => `${prev === '0' ? '' : prev}${num}`)//mostra no visor o valor o botão clicado
   }
 
+// SOMA
   const handleSumNumbers = () => {
 
     if(firstNumber === '0'){
@@ -35,6 +38,7 @@ const App = () => {
 
   }
 
+// SUBTRAÇÃO
   const handleMinusNumbers = () => {
 
     if(firstNumber === '0'){
@@ -42,13 +46,42 @@ const App = () => {
         setCurrentNumber('0')
         setOperation('-')
     }else {
-      const sum = Number(firstNumber) - Number(currentNumber);
-      setCurrentNumber(String(sum))
+      const sub = Number(firstNumber) - Number(currentNumber);
+      setCurrentNumber(String(sub))
+      setOperation('')
+    }
+
+  }
+// ---------------- Meu código --------------------------------
+  const handleMultiplyNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('x')
+    }else {
+      const multiply = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(multiply))
       setOperation('')
     }
 
   }
 
+  const handleDivisionNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('/')
+    }else {
+      const division = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(division));
+      setOperation('')
+    }
+
+  }
+
+// RESULTADO
   const handleEquals = () => {
 
     if(firstNumber !== '0' && operation !== '' && currentNumber !== '0'){
@@ -59,6 +92,12 @@ const App = () => {
           case '-':
             handleMinusNumbers();
             break;
+          case 'x':
+            handleMultiplyNumbers();
+            break;
+            case '/':
+              handleDivisionNumbers();
+              break;
           default: 
             break;
         }
@@ -68,12 +107,12 @@ const App = () => {
 
   return (
     <Container>
-    <h2>Teste</h2>
+    <h2>Calculadora Virtual</h2>
       <Content>
         <Input value={currentNumber}/>
         <Row>
-          <Button label="x"/>
-          <Button label="/"/>
+          <Button label="x" onClick={handleMultiplyNumbers}/>
+          <Button label="/" onClick={handleDivisionNumbers}/>
           <Button label="c" onClick={handleOnClear}/>
           <Button label="."/>
         </Row>
